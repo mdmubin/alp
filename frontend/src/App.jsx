@@ -1,9 +1,9 @@
 import React from 'react';
-import Navbar from './components/Navbar';
+import HomeScreeen from './views/HomeScreen';
 
 function App() {
   return (
-    <Navbar />
+    <HomeScreeen />
   );
 }
 
