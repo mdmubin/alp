@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from '../assets/mountains.png';
 
 function Navbar() {
   return (
@@ -15,7 +14,7 @@ function Navbar() {
               fontFamily: 'Dancing Script',
             }}
           >
-            <img className="d-inline-block me-2" alt="Logo" src={logo} height="28px" width="28px" />
+            <img className="d-inline-block me-2" alt="Logo" src="/assets/mountains.png" height="28px" width="28px" />
             Alps
           </span>
         </a>

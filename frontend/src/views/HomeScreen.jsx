@@ -1,6 +1,6 @@
 import React from 'react';
-import ItemCard from '../components/ItemCard';
-import Navbar from '../components/Navbar';
+import ItemCard from './components/ItemCard';
+import Navbar from './components/Navbar';
 
 import data from '../temp/products';
 
