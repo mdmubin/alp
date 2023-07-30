@@ -4,7 +4,7 @@ import logo from '../assets/mountains.png';
 function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-      <div className="container-fluid">
+      <div className="container">
 
         {/* title + icon */}
         <a className="navbar-brand" href="/">
@@ -15,7 +15,7 @@ function Navbar() {
               fontFamily: 'Dancing Script',
             }}
           >
-            <img className="d-inline-block me-2" alt="Logo" src={logo} height="32px" width="32px" />
+            <img className="d-inline-block me-2" alt="Logo" src={logo} height="28px" width="28px" />
             Alps
           </span>
         </a>
@@ -27,7 +27,7 @@ function Navbar() {
 
         {/* Navbar navigation elements */}
         <div className="navbar-collapse collapse" id="navbar-minimize">
-          <ul className="navbar-nav me-auto">
+          <ul className="navbar-nav ms-auto">
 
             <li className="nav-item">
               <a className="nav-link active" href="/">
@@ -41,6 +41,24 @@ function Navbar() {
                 <i className="bi bi-github me-2" />
                 Github
               </a>
+            </li>
+
+            {/* login icon / user icon */}
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="/" role="button" aria-haspopup="true" aria-expanded="false">
+                <i className="ms-3 bi bi-person-circle" />
+              </a>
+
+              <div className="dropdown-menu">
+                <a className="dropdown-item" href="/login">
+                  <i className="bi bi-box-arrow-in-right me-3" />
+                  Login
+                </a>
+                <a className="dropdown-item" href="/report">
+                  <i className="bi bi-flag me-3" />
+                  Submit a report
+                </a>
+              </div>
             </li>
 
           </ul>
