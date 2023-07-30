@@ -22,6 +22,8 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'import/extensions': ['error', 'ignorePackages'],
+    // "import/no-unresolved": "off",
     'linebreak-style': 0,
     'no-console': 0,
   },
