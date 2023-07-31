@@ -1,5 +1,6 @@
 import React from 'react';
 import Types from 'prop-types';
+import Rating from './Rating';
 
 function ItemCard({ id, data }) {
   return (
@@ -8,16 +9,15 @@ function ItemCard({ id, data }) {
       <img src={`${data.image}`} className="card-img-top py-3" alt={data.name} />
 
       <div className="card-body">
-        <h5 className="card-title">{data.name}</h5>
+        <a href={`/products/${id}`} style={{ textDecoration: 'None' }}>
+          <h5 className="card-title">{data.name}</h5>
+        </a>
         {/* <p className="card-text">{data.description}</p> */}
-        <p className="card-text">
-          <small className="text-muted">
-            { /* eslint-disable-next-line react/jsx-one-expression-per-line */}
-            Rated {data.rating} : {data.numReviews} Reviews
-          </small>
-        </p>
+        <small className="card-text text-muted">
+          <Rating numRatings={data.rating} numReviews={data.numReviews} />
+        </small>
         { /* eslint-disable-next-line react/jsx-one-expression-per-line */}
-        <p><h4>${data.price}</h4></p>
+        <h4 className="pt-2">${data.price}</h4>
       </div>
 
     </div>
