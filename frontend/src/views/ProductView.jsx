@@ -1,16 +1,18 @@
 /* eslint-disable no-underscore-dangle */
 
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import Types from 'prop-types';
 import Navbar from './components/Navbar';
-
-import products from '../temp/products';
 import Rating from './components/Rating';
 
 function ProductView() {
   const { id } = useParams();
-  const product = products.find((p) => p._id === id);
+  const [product, setProduct] = useState({});
+
+  useEffect(() => {
+    axios.get(`http://127.0.0.1:5000/products/${id}`).then((res) => setProduct(res.data));
+  }, []);
 
   return (
     <>
@@ -46,17 +48,17 @@ function ProductView() {
 
               <li className="list-group-item bg-light container-fluid">
                 <div className="row">
-                  <text className="col fw-bold">Price</text>
-                  <text className="col">{`$${product.price}`}</text>
+                  <div className="col fw-bold">Price</div>
+                  <div className="col">{`$${product.price}`}</div>
                 </div>
               </li>
 
               <li className="list-group-item bg-light container-fluid">
                 <div className="row">
-                  <text className="col fw-bold">Availability</text>
-                  <text className="col">
+                  <div className="col fw-bold">Availability</div>
+                  <div className="col">
                     {product.countInStock > 0 ? 'In Stock' : 'Out of Stock'}
-                  </text>
+                  </div>
                 </div>
               </li>
 
@@ -76,13 +78,5 @@ function ProductView() {
     </>
   );
 }
-
-ProductView.propTypes = {
-  match: Types.shape({
-    params: Types.shape({
-      id: Types.string,
-    }),
-  }).isRequired,
-};
 
 export default ProductView;
