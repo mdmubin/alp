@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Types from 'prop-types';
 import Rating from './Rating';
 
@@ -9,13 +10,15 @@ function ItemCard({ id, data }) {
       <img src={`${data.image}`} className="card-img-top py-3" alt={data.name} />
 
       <div className="card-body">
-        <a href={`/products/${id}`} style={{ textDecoration: 'None' }}>
+        <Link to={`/products/${id}`} style={{ textDecoration: 'None' }}>
           <h5 className="card-title">{data.name}</h5>
-        </a>
+        </Link>
+
         {/* <p className="card-text">{data.description}</p> */}
         <small className="card-text text-muted">
           <Rating numRatings={data.rating} numReviews={data.numReviews} />
         </small>
+
         { /* eslint-disable-next-line react/jsx-one-expression-per-line */}
         <h4 className="pt-2">${data.price}</h4>
       </div>
