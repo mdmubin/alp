@@ -6,7 +6,7 @@ import data from '../temp/products';
 
 function HomeScreen() {
   return (
-    <div>
+    <>
       <Navbar />
       <div className="container-md my-5">
         <div className="row">
@@ -17,7 +17,7 @@ function HomeScreen() {
           {data.map(({ _id, ...details }) => <ItemCard key={_id} id={_id} data={details} />)}
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
