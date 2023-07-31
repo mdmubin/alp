@@ -1,9 +1,15 @@
-import express from 'express';
 import cors from 'cors';
+import express from 'express';
+import mongoose from 'mongoose';
 import products from './data/temp.js';
 
+import * as config from './config.js';
+
 const app = express();
-const port = 5000;
+
+mongoose.connect(config.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then((res) => console.log(`Connected to database: ${res.connection.name}`))
+  .catch((error) => console.error(error.message));
 
 app.use(cors()); // enable cors for all origins
 
@@ -21,6 +27,6 @@ app.get('/products/:id', (req, res) => {
   res.send(product);
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+app.listen(config.PORT, () => {
+  console.log(`Example app listening on port ${config.PORT}`);
 });
