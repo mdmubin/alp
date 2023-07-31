@@ -1,8 +1,11 @@
 import express from 'express';
+import cors from 'cors';
 import products from './data/temp.js';
 
 const app = express();
 const port = 5000;
+
+app.use(cors()); // enable cors for all origins
 
 app.get('/', (_req, res) => {
   res.send('Hello World!');
