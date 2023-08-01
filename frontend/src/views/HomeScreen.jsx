@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react';
 import ItemCard from './components/ItemCard';
 import Navbar from './components/Navbar';
 
-// import data from '../temp/products';
-
 function HomeScreen() {
   const [products, setProducts] = useState([]);
 
