@@ -8,8 +8,8 @@
 ///
 
 import mongoose from 'mongoose';
-import users from '../data/users.js';
-import products from '../data/products.js';
+import users from './data/users.js';
+import products from './data/products.js';
 import * as config from './config.js';
 import {
   Order, Product, Review, User,
