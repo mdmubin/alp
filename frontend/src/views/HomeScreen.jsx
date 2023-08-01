@@ -1,14 +1,18 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ItemCard from './components/ItemCard';
 import Navbar from './components/Navbar';
+import { listProducts } from '../actions/productActions';
+import Spinner from './components/Spinner';
 
 function HomeScreen() {
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+  const productList = useSelector((state) => state.productList);
+  const { loading, products } = productList;
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:5000/api/products').then((res) => setProducts(res.data));
-  }, []);
+    dispatch(listProducts());
+  }, [dispatch]);
 
   return (
     <>
@@ -19,9 +23,11 @@ function HomeScreen() {
         </div>
 
         <div className="row justify-content-start">
-          {products.map(({ _id, ...details }) => (
-            <ItemCard key={_id} id={_id} data={details} />
-          ))}
+          {/* if loading, show spinner, else show product list */}
+          {loading ? <Spinner text="Loading" />
+            : products.map(({ _id, ...details }) => (
+              <ItemCard key={_id} id={_id} data={details} />
+            ))}
         </div>
       </div>
     </>
