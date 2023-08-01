@@ -9,7 +9,7 @@ function HomeScreen() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:5000/products').then((res) => setProducts(res.data));
+    axios.get('http://127.0.0.1:5000/api/products').then((res) => setProducts(res.data));
   }, []);
 
   return (
