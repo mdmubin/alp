@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "nodemon server/main.js"
+    "start": "nodemon server/main.js",
+    "data:seed": "node server/config/seeder.js seed",
+    "data:flush": "node server/config/seeder.js flush"
   },
   "author": "mdmubin",
   "license": "MIT",
