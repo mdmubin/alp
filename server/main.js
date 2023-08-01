@@ -1,9 +1,9 @@
 import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
-import products from './data/temp.js';
+import products from './data/products.js';
 
-import * as config from './config.js';
+import * as config from './config/config.js';
 
 const app = express();
 
