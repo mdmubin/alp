@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ItemCard from './components/ItemCard';
 import Navbar from './components/Navbar';
-import { listProducts } from '../actions/productActions';
+import { getProductList } from '../store/actions/productActions';
 import Spinner from './components/Spinner';
 
 function HomeScreen() {
@@ -11,7 +11,7 @@ function HomeScreen() {
   const { loading, products } = productList;
 
   useEffect(() => {
-    dispatch(listProducts());
+    dispatch(getProductList());
   }, [dispatch]);
 
   return (
