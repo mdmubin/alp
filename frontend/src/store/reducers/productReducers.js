@@ -1,6 +1,6 @@
 /* eslint-disable default-param-last */
 
-import * as actions from '../constants/actions';
+import * as actions from '../constants/productActions';
 
 export function productListReducer(state = { products: [] }, action) {
   switch (action.type) {
