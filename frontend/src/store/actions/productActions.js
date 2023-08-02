@@ -18,13 +18,10 @@ export const getProductDetails = (id) => async (dispatch) => {
   dispatch({ type: actions.DETAILS_REQUEST });
 
   axios.get(`http://127.0.0.1:5000/api/products/${id}`)
-    .then((res) => {
-      console.log(res.data);
-      dispatch({
-        type: actions.DETAILS_SUCCESS,
-        payload: res.data,
-      });
-    }).catch((err) => dispatch({
+    .then((res) => dispatch({
+      type: actions.DETAILS_SUCCESS,
+      payload: res.data,
+    })).catch((err) => dispatch({
       type: actions.DETAILS_FAILURE,
       payload: err.response && err.message,
     }));
