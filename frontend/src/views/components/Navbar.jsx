@@ -1,7 +1,8 @@
 import React from 'react';
+import Types from 'prop-types';
 import { Link } from 'react-router-dom';
 
-function Navbar() {
+function Navbar({ activeTab }) {
   return (
     <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
       <div className="container">
@@ -30,16 +31,16 @@ function Navbar() {
           <ul className="navbar-nav ms-auto">
 
             <li className="nav-item">
-              <Link className="nav-link active" to="/">
+              <Link className={`nav-link ${activeTab === 'HOME' && 'active'}`} to="/">
                 <i className="bi bi-house-door-fill me-2" />
                 Home
               </Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="https://github.com/mdmubin/alps">
-                <i className="bi bi-github me-2" />
-                Github
+              <Link className={`nav-link ${activeTab === 'CART' && 'active'}`} to="/cart/">
+                <i className="bi bi-cart-fill me-2" />
+                Cart
               </Link>
             </li>
 
@@ -51,12 +52,17 @@ function Navbar() {
 
               <div className="dropdown-menu">
                 <Link className="dropdown-item" to="/login">
-                  <i className="bi bi-box-arrow-in-right me-3" />
+                  <i className="bi bi-box-arrow-in-right me-2" />
                   Login
                 </Link>
                 <Link className="dropdown-item" to="/report">
-                  <i className="bi bi-flag me-3" />
-                  Submit a report
+                  <i className="bi bi-flag me-2" />
+                  Report
+                </Link>
+                <hr className="dropdown-divider" />
+                <Link className="dropdown-item" to="https://github.com/mdmubin/alps" target="_blank" rel="noopener noreferrer">
+                  <i className="bi bi-github me-2" />
+                  Github
                 </Link>
               </div>
             </li>
@@ -68,5 +74,13 @@ function Navbar() {
     </nav>
   );
 }
+
+Navbar.propTypes = {
+  activeTab: Types.string,
+};
+
+Navbar.defaultProps = {
+  activeTab: '',
+};
 
 export default Navbar;
