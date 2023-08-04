@@ -1,22 +1,28 @@
-/* eslint-disable no-underscore-dangle */
-
-import React, { useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Navbar from './components/Navbar';
 import Rating from './components/Rating';
 import { getProductDetails } from '../store/actions/productActions';
 import Spinner from './components/Spinner';
+import { addToCart } from '../store/actions/cartActions';
 
 function ProductView() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, product } = productDetails;
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getProductDetails(id));
   }, [dispatch, id]);
+
+  const [quantity, setQuantity] = useState(1);
+  const handleAddToCart = () => {
+    dispatch(addToCart(id, Number(quantity)));
+    navigate('/cart/');
+  };
 
   return (
     <>
@@ -68,9 +74,33 @@ function ProductView() {
                   </div>
                 </li>
 
+                {product.countInStock > 0 && (
+                  <li className="list-group-item bg-light container-fluid">
+                    <div className="row">
+                      <div className="col fw-bold">Quantity</div>
+                      <div className="col input-group-sm">
+                        <input
+                          type="number"
+                          id="typeNumber"
+                          className="form-control"
+                          min={1}
+                          max={product.countInStock}
+                          defaultValue={1}
+                          onChange={(e) => setQuantity(e.target.value)}
+                        />
+                      </div>
+                    </div>
+                  </li>
+                )}
+
                 <li className="list-group-item active">
                   <div className="container-fluid text-center ">
-                    <button type="button" className="btn btn-sm btn-success">
+                    <button
+                      type="button"
+                      className="btn btn-sm btn-success"
+                      disabled={product.countInStock <= 0}
+                      onClick={handleAddToCart}
+                    >
                       <i className="bi bi-cart-plus pe-2" />
                       Add to Cart
                     </button>
