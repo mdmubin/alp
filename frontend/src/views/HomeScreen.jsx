@@ -16,7 +16,7 @@ function HomeScreen() {
 
   return (
     <>
-      <Navbar />
+      <Navbar activeTab="HOME" />
       <div className="container-md my-5">
         <div className="row">
           <h3>Latest Products</h3>
