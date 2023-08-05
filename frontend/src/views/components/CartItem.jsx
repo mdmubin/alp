@@ -1,16 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Types from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { addToCart } from '../../store/actions/cartActions';
+import { addToCart, removeFromCart } from '../../store/actions/cartActions';
 
 function CartItem({ itemData }) {
   const dispatch = useDispatch();
-  const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState(itemData.qty);
+  const [cost, setCost] = useState(Math.round(quantity * itemData.price * 100) / 100);
 
-  useEffect(() => {
-    setPrice(itemData.price);
-  }, [itemData]);
+  const updateItemQuantity = (e) => {
+    const newQty = Number(e.target.value);
+    setQuantity(newQty);
+    setCost(Math.round(newQty * itemData.price * 100) / 100);
+    dispatch(addToCart(itemData._id, newQty));
+  };
+
+  const handleRemoveItem = () => {
+    dispatch(removeFromCart(itemData._id));
+  };
 
   return (
     <li className="list-group-item">
@@ -22,6 +29,10 @@ function CartItem({ itemData }) {
           <h5 className="fw-medium">{itemData.name}</h5>
         </div>
 
+        <div className="px-2 text-primary">
+          <h6 className="fw-medium">{`$${cost}`}</h6>
+        </div>
+
         <div className="px-2 input-group-sm">
           <input
             type="number"
@@ -30,12 +41,12 @@ function CartItem({ itemData }) {
             min={1}
             max={itemData.countInStock}
             defaultValue={itemData.qty}
-            onChange={(e) => dispatch(addToCart(itemData._id, Number(e.target.value)))}
+            onChange={updateItemQuantity}
           />
         </div>
 
         <div className="text-danger">
-          <button type="button" className="btn btn-sm btn-outline-danger">
+          <button type="button" className="btn btn-sm btn-outline-danger" onClick={handleRemoveItem}>
             <i className="bi bi-trash-fill" />
           </button>
         </div>

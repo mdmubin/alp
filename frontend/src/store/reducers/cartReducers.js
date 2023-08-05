@@ -19,7 +19,10 @@ export function cartListReducer(state = { cartItems: [] }, action) {
       return { ...state, cartItems: [...state.cartItems, newItem] };
     }
     case actions.DEL_ITEM:
-      return {};
+      return {
+        ...state,
+        cartItems: state.cartItems.filter((i) => i._id !== action.payload),
+      };
     default:
       return state;
   }

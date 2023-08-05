@@ -8,7 +8,7 @@ function CartView() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // while (cartList.length) { cartList.pop(); }
+    // localStorage.setItem('cartItems', JSON.stringify([]));
   }, [dispatch, cartList]);
 
   const checkOut = () => { };

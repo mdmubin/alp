@@ -18,3 +18,8 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
     }))
     .then(() => localStorage.setItem('cartItems', JSON.stringify(getState().cartList.cartItems)));
 };
+
+export const removeFromCart = (id) => async (dispatch, getState) => {
+  dispatch({ type: actions.DEL_ITEM, payload: id });
+  localStorage.setItem('cartItems', JSON.stringify(getState().cartList.cartItems));
+};
