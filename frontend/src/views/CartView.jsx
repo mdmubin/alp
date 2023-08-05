@@ -33,7 +33,7 @@ function CartView() {
         {cartList.length > 0
           ? (
             <div className="row">
-              <div className="col-md-8 card text-center bg-light py-2 my-5">
+              <div className="col-md-8 text-center my-5">
                 <ul className="list-group">
                   {cartList.map((item, i) => <CartItem key={`cart-item-${i + 1}`} itemData={item} />)}
                 </ul>
