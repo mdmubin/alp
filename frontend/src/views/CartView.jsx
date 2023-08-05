@@ -1,15 +1,27 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import Navbar from './components/Navbar';
 import CartItem from './components/CartItem';
 
 function CartView() {
   const cartList = useSelector((state) => state.cartList.cartItems);
-  const dispatch = useDispatch();
+  const [total, setTotal] = useState(0);
+  const [numItems, setNumItems] = useState(0);
+
+  const updateCostAndCount = () => {
+    let totalCost = 0;
+    let itemCount = 0;
+    cartList.forEach((i) => {
+      itemCount += i.qty;
+      totalCost += (i.price * i.qty);
+    });
+    setTotal(Math.round(totalCost * 100) / 100);
+    setNumItems(itemCount);
+  };
 
   useEffect(() => {
-    // localStorage.setItem('cartItems', JSON.stringify([]));
-  }, [dispatch, cartList]);
+    updateCostAndCount();
+  }, [updateCostAndCount, setTotal, setNumItems]);
 
   const checkOut = () => { };
 
@@ -38,14 +50,14 @@ function CartView() {
                   <li className="list-group-item bg-light container-fluid">
                     <div className="row">
                       <div className="col fw-bold">Total Item(s)</div>
-                      <div className="col">40</div>
+                      <div className="col">{numItems}</div>
                     </div>
                   </li>
 
                   <li className="list-group-item bg-light container-fluid">
                     <div className="row">
                       <div className="col fw-bold">Total Cost</div>
-                      <div className="col">$50000</div>
+                      <div className="col">{`$${total}`}</div>
                     </div>
                   </li>
 
