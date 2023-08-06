@@ -44,3 +44,33 @@ export function getUserDetails(req, res, next) {
     })
     .catch((error) => next(error));
 }
+
+export function registerUser(req, res, next) {
+  const {
+    name, username, email, password,
+  } = req.body;
+
+  Promise.resolve((
+    () => User.find({ username }).exec()
+  )())
+    .then((queryRes) => {
+      if (!queryRes || queryRes.length !== 0) {
+        throwServerError('username already exists', 409);
+      }
+    })
+    .then(() => User.create({
+      name, username, email, password,
+    }))
+    .then((user) => {
+      if (!user) {
+        throwServerError('failed to register', 500);
+      }
+      res.status(201);
+      res.json({
+        _id: user._id,
+        isAdmin: user.isAdmin,
+        token: jwt.sign({ _id: user._id }, config.JWT_SECRET, { expiresIn: '30d' }),
+      });
+    })
+    .catch((error) => next(error));
+}
