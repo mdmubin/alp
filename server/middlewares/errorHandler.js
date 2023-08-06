@@ -12,10 +12,5 @@ export default function defaultErrorHandler(err, req, res, next) {
     console.log(err.stack);
   }
 
-  res
-    .status(statusCode)
-    .json({
-      error: statusCode,
-      message: errorMsg,
-    });
+  res.status(statusCode).json({ message: errorMsg });
 }
