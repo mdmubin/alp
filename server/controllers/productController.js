@@ -1,4 +1,5 @@
 import Product from '../models/product.js';
+import { throwServerError } from './utils.js';
 
 export async function getProducts(_req, res, next) {
   Product.find({}).exec()
@@ -12,9 +13,7 @@ export async function getProductsById(req, res, next) {
       if (product) {
         res.json(product);
       } else {
-        const error = Error('Could not find the requested product');
-        error.status = 404;
-        throw error;
+        throwServerError('Could not find the requested product', 404);
       }
     })
     .catch((error) => next(error));
