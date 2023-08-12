@@ -1,8 +1,11 @@
 import React from 'react';
 import Types from 'prop-types';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function Navbar({ activeTab }) {
+  const { user } = useSelector((state) => state.userAuth);
+
   return (
     <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
       <div className="container">
@@ -47,20 +50,26 @@ function Navbar({ activeTab }) {
             {/* login icon / user icon */}
             <li className="nav-item dropdown">
               <Link className="nav-link dropdown-toggle" data-bs-toggle="dropdown" to="/" role="button" aria-haspopup="true" aria-expanded="false">
-                <i className="ms-3 bi bi-person-circle" />
+                <i className={user ? 'bi bi-person-fill-check' : 'bi bi-person-circle'} />
               </Link>
 
               <div className="dropdown-menu">
+                {user && (
+                  <Link className="dropdown-item" to="/login">
+                    <i className="bi bi-person-lines-fill me-2" />
+                    Profile
+                  </Link>
+                )}
                 <Link className="dropdown-item" to="/login">
                   <i className="bi bi-box-arrow-in-right me-2" />
-                  Login
+                  {user ? 'Logout' : 'Login'}
                 </Link>
                 <Link className="dropdown-item" to="/report">
                   <i className="bi bi-flag me-2" />
                   Report
                 </Link>
                 <hr className="dropdown-divider" />
-                <Link className="dropdown-item" to="https://github.com/mdmubin/alps" target="_blank" rel="noopener noreferrer">
+                <Link className="dropdown-item" to="https://github.com/mdmubin/alp" target="_blank" rel="noopener noreferrer">
                   <i className="bi bi-github me-2" />
                   Github
                 </Link>

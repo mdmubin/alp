@@ -6,12 +6,12 @@ export const userLogin = (email, password) => async (dispatch) => {
 
   axios.post('http://127.0.0.1:5000/api/users/login/', { email, password }, {
     headers: { 'Content-Type': 'application/json' },
-  }).then((data) => {
+  }).then((response) => {
     dispatch({
       type: actions.LOGIN_SUCCESS,
-      payload: data,
+      payload: response.data,
     });
-    localStorage.setItem('user', JSON.stringify(data));
+    localStorage.setItem('user', JSON.stringify(response.data));
   }).catch((err) => dispatch({
     type: actions.LOGIN_FAILURE,
     payload: err.response && err.response.data.message
