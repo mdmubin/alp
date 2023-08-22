@@ -39,9 +39,9 @@ Open your web browser and navigate to http://localhost:5173 to access the Applic
 
 # Screenshots
 
-* [Home Screen]()
-* [Item View]()
-* [Cart View]()
+* [Home Screen](images/snip-1.PNG)
+* [Item View](images/snip-2.PNG)
+* [Cart View](images/snip-3.PNG)
 
 ---
 
