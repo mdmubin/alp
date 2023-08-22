@@ -13,14 +13,14 @@ function LoginView() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { loading, error, user } = useSelector((state) => state.userAuth);
+  const { loading, error, user } = useSelector((state) => state.user.userAuth);
   const redirect = location.search ? location.search.split('=')[1] : '/';
 
   useEffect(() => {
-    if (user) { // redirect if already logged in
+    if (user) {
       navigate(redirect);
     }
-  }, [user]);
+  }, [user, navigate, redirect]);
 
   const loginHandler = (e) => {
     e.preventDefault();
