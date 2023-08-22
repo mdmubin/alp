@@ -1,10 +1,17 @@
 import React from 'react';
 import Types from 'prop-types';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { userLogout } from '../../store/actions/userActions';
 
 function Navbar({ activeTab }) {
-  const { user } = useSelector((state) => state.userAuth);
+  const dispatch = useDispatch();
+
+  const { user } = useSelector((state) => state.user.userAuth);
+
+  const logoutHandler = () => {
+    dispatch(userLogout());
+  };
 
   return (
     <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
@@ -60,7 +67,7 @@ function Navbar({ activeTab }) {
                     Profile
                   </Link>
                 )}
-                <Link className="dropdown-item" to="/login">
+                <Link className="dropdown-item" to={user ? '/' : '/login'} onClick={logoutHandler}>
                   <i className="bi bi-box-arrow-in-right me-2" />
                   {user ? 'Logout' : 'Login'}
                 </Link>

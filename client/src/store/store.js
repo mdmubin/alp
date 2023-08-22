@@ -5,13 +5,13 @@ import { composeWithDevTools } from '@redux-devtools/extension';
 import thunk from 'redux-thunk';
 import { productDetailsReducer, productListReducer } from './reducers/productReducers';
 import { cartListReducer } from './reducers/cartReducers';
-import { userAuthReducer } from './reducers/userReducers';
+import { userAuthReducer, userRegisterReducer } from './reducers/userReducers';
 
 const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
   cartList: cartListReducer,
-  userAuth: userAuthReducer,
+  user: combineReducers({ userAuth: userAuthReducer, userRegister: userRegisterReducer }),
 });
 
 const middleware = [
@@ -26,7 +26,7 @@ const store = configureStore({
     cartList: {
       cartItems: JSON.parse(localStorage.getItem('cartItems')) || [],
     },
-    user: JSON.parse(localStorage.getItem('user')) || null,
+    user: JSON.parse(localStorage.getItem('user')) || { userAuth: {}, userRegister: {} },
   },
 });
 
