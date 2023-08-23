@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import CartItem from './components/CartItem';
 
 function CartView() {
-  const cartList = useSelector((state) => state.cartList.cartItems);
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.user.userAuth);
+  const cartList = useSelector((state) => state.cart.cartItems);
   const [total, setTotal] = useState(0);
   const [numItems, setNumItems] = useState(0);
 
@@ -19,11 +22,17 @@ function CartView() {
     setNumItems(itemCount);
   };
 
+  const checkOut = () => {
+    if (!user) {
+      navigate('/login');
+    } else {
+      navigate('/checkout');
+    }
+  };
+
   useEffect(() => {
     updateCostAndCount();
   }, [updateCostAndCount, setTotal, setNumItems]);
-
-  const checkOut = () => { };
 
   return (
     <>

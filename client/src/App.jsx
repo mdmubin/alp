@@ -5,6 +5,8 @@ import HomeScreeen from './views/HomeScreen';
 import ProductView from './views/ProductView';
 import LoginView from './views/LoginView';
 import RegisterView from './views/RegisterView';
+import CheckoutView from './views/CheckoutView';
+import PaymentView from './views/PaymentView';
 
 const router = createBrowserRouter([
   { path: '/', element: <HomeScreeen /> },
@@ -13,6 +15,8 @@ const router = createBrowserRouter([
   { path: '/cart/', element: <CartView /> },
   { path: '/login/', element: <LoginView /> },
   { path: '/register/', element: <RegisterView /> },
+  { path: '/checkout/', element: <CheckoutView /> },
+  { path: '/payment/', element: <PaymentView /> },
 ]);
 
 function App() {

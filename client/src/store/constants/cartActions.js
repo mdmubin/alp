@@ -1,2 +1,3 @@
 export const ADD_ITEM = 'CART_ADD_ITEM';
 export const DEL_ITEM = 'CART_DEL_ITEM';
+export const SAVE_SHIPPING_ADDRESS = 'SAVE_SHIPPING_ADDRESS';
