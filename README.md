@@ -19,6 +19,12 @@ npm install # backend libs
 cd client
 npm install # frontend libs
 ```
+* Seed the data into the database
+In the root project directory, type the following commands
+```shell
+npm run data:seed
+```
+This will run a script which will seed mongodb with the data required for `alp`.
 
 ### Start the development server:
 
@@ -50,4 +56,5 @@ Open your web browser and navigate to http://localhost:5173 to access the Applic
 
 ### Dev Environment
 - Node.js:  `v18.17.0`
+- MongoDB: `v6.0.x`
 - See [package.json](https://github.com/mdmubin/alp/blob/main/package.json) for versions of individual libraries
