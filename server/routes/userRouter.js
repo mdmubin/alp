@@ -5,10 +5,9 @@ import { authenticateUser, getUserDetails, registerUser } from '../controllers/u
 const userRouter = express.Router();
 
 userRouter.post('/login/', authenticateUser);
+userRouter.post('/register', registerUser);
 userRouter
   .route('/profile')
   .get(authorize, getUserDetails);
-
-userRouter.post('/register', registerUser);
 
 export default userRouter;
