@@ -2,7 +2,7 @@
 
 import * as config from '../config/config.js';
 
-export default function defaultErrorHandler(err, req, res, next) {
+export default function defaultErrorHandler(err, _req, res, _next) {
   const statusCode = err.status ?? 500;
   const errorMsg = (config.NODE_ENV === 'development')
     && err.message ? err.message : 'Unexpected server error!';
